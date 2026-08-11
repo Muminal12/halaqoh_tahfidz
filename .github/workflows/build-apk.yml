@@ -29,7 +29,11 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-
+      - name: Regenerate Android project
+        run: |
+          rm -rf android
+          flutter create --platforms android .
+        working-directory: ${{ env.PROJECT_DIR }}
       - name: Get dependencies
         run: flutter pub get
         working-directory: ${{ env.PROJECT_DIR }}
